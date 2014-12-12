@@ -5,6 +5,10 @@ import javax.swing.JFrame;
 public class Game
 {
   static AbsSat[] SatField;
+  static String ComProt = "Default";
+  static int EncryptKey = 1001;
+  static boolean connected = false;
+  static int connectTo = 0;
   
   public Game()
   {
@@ -25,14 +29,6 @@ public class Game
     SatField[2] = new ComSat("ComSatTest", 3);
   }
   
-  public static void GameWait(long Time)
-  {
-    long now = System.currentTimeMillis();
-    for (;;)
-    {
-      if (System.currentTimeMillis() - now >= Time * 1000L) {
-        break;
-      }
-    }
-  }
+  
 }
+

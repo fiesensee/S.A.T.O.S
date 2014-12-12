@@ -23,7 +23,8 @@ public class Window
   public static JTextArea Output;
   private JLabel Title;
   private JScrollPane jScrollPane1;
-  
+  public static Timer Scanner = new Timer(1000, new ScannerListener());
+  public static boolean tryConnect = false;
   public Window()
   {
     initComponents();
@@ -79,28 +80,35 @@ public class Window
     {
       public void actionPerformed(ActionEvent evt)
       {
-        Window.this.InputActionPerformed(evt);
-      }
+        if (tryConnect)
+            Window.this.ConnectActionPerformed(evt);
+        else 
+            Window.this.InputActionPerformed(evt);
+      }        
     });
     add(this.Input, "Last");
   }
   
-  public void actionPerformed(ActionEvent e) {}
   
-  private void InputActionPerformed(ActionEvent evt)
-  {
+  
+  private void InputActionPerformed(ActionEvent evt){
+    int s = 0;
     String Text = this.Input.getText();
     this.Input.setText("");
     switch (Text)
     {
     case "scan": 
-      scan(Game.SatField);
+      scan();
       break;
     case "test": 
       printout("test");
       break;
-    case "connect": 
+    case "connect":
+      connect();
       break;
+    case "exit":
+        System.exit(0);
+        break;
     default: 
       printout("unknown command");
     }
@@ -119,25 +127,52 @@ public class Window
     Output.setCaretPosition(Output.getDocument().getLength() - 1);
   }
   
-  public void scan(AbsSat[] SatField)
+  public void scan()
   {
     int i = 0;
     printout("scanning...");
     Scanner.start();
   }
+  public void connect(){
+      Window.tryConnect = true;
+      printout("to:");
+      
+  }
+  public void ConnectActionPerformed(ActionEvent evt){
+      int i = 0;
+      String sat = this.Input.getText();
+      this.Input.setText("");
+      while (i < Game.SatField.length-1){
+          if (sat.equals(Game.SatField[i].Name)){
+              printout(sat);
+              Game.connected = true;
+              Game.connectTo = Game.SatField[i].ID;
+              printout("connected to "+Game.SatField[i].Name);
+              break;
+          }
+          i++;
+          if (i == Game.SatField.length-1)
+              printout("no satellite found with this name");
+      }
+      
+      Window.tryConnect = false;
+      
+  }
   
-  public static Timer Scanner = new Timer(1000, new ScannerListener());
+
 }
-class ScannerListener
-  implements ActionListener
+class ScannerListener implements ActionListener
 {
   public static int i = 0;
   
+  @Override
   public void actionPerformed(ActionEvent e)
   {
     Window.printout(Game.SatField[i].Name);
     if (i == Game.SatField.length - 1) {
-      Window.stopTimer();
+        i = -1;
+        Window.stopTimer();
+      
     }
     i += 1;
   }
