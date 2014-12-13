@@ -112,6 +112,9 @@ public class Window
             case "status":
                 status();
                 break;
+            case "resetKey":
+                Game.DecryptKey = 0x10;
+                break;
             case "exit":
                 System.exit(0);
                 break;
@@ -155,8 +158,10 @@ public class Window
     public void disconnect() {
         if (Game.connected) {
             Game.connected = false;
-            Game.SatField[Game.SatField[Game.connectTo].Com].setCom(0);
-            Game.SatField[Game.connectTo].setCom(0);
+            if (Game.SatField[Game.connectTo].Com > 0){
+                Game.SatField[Game.SatField[Game.connectTo].Com].setCom(0);
+                Game.SatField[Game.connectTo].setCom(0);
+            }
             Game.connectTo = 0;
             printout("disconnected");
         } else {
@@ -190,22 +195,25 @@ public class Window
         int i = 1;
         String sat = this.Input.getText();
         this.Input.setText("");
-        while (i < Game.SatField.length - 1) {
+        while (i < Game.SatField.length ) {
             if (sat.equals(Game.SatField[i].Name)) {
-                if (Game.EncryptKey == Game.SatField[i].cryptkey){
+                if (Game.SatField[i].Type.equals("ComSat")){
                     Game.connected = true;
                     Game.connectTo = Game.SatField[i].ID;
                     printout(sat);
                     printout("successfuly connected");
                     printout(Game.SatField[i].response);
                 }
-                else
+                else{
+                    printout(sat);
                     printout("Satellite only sends: " + Game.undecryptedResponse);
-                    break;
+
+                }
+                break;
                     
             }
             i++;
-            if (i == Game.SatField.length - 1) {
+            if (i == Game.SatField.length) {
                 printout("no satellite found with this name");
             }
         }
@@ -218,10 +226,10 @@ public class Window
         int i = 1;
         String sat = this.Input.getText();
         this.Input.setText("");
-        while (i < Game.SatField.length - 1) {
+        while (i < Game.SatField.length) {
             if (sat.equals(Game.SatField[i].Name)) {
                 if ((Game.SatField[i].Type.equals("DataSat"))||(Game.SatField[i].Type.equals("KryptoSat"))){
-                    if(Game.EncryptKey == Game.SatField[i].cryptkey){
+                    if(Game.DecryptKey == Game.SatField[i].cryptkey){
                         printout(sat);
                         Game.SatField[i].setCom(Game.connectTo);
                         Game.SatField[Game.connectTo].setCom(Game.SatField[i].ID);
@@ -239,7 +247,7 @@ public class Window
                 break;
             }
             i++;
-            if (i == Game.SatField.length - 1) {
+            if (i == Game.SatField.length) {
                 printout("no satellite found with this name");
             }
         }

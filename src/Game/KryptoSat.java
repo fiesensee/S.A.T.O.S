@@ -12,7 +12,10 @@ public class KryptoSat extends AbsSat{
     void SatFunction() {
         //give right encryption key
         Window.printout("Generating Encryption Key");
-        Game.EncryptKey = 0x38F;
+        Game.DecryptKey = this.decryptionKey;
+        Window.printout("Disconnecting from KryptoSat");
+        Game.SatField[Game.SatField[Game.connectTo].Com].setCom(0);
+        Game.SatField[Game.connectTo].setCom(0);
     }
 
     @Override
