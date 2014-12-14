@@ -1,5 +1,6 @@
 package Game;
 
+import static Game.Window.printout;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Cursor;
@@ -14,6 +15,7 @@ import javax.swing.JTextField;
 import javax.swing.Timer;
 import javax.swing.border.SoftBevelBorder;
 import javax.swing.text.Document;
+import java.util.Random;
 
 public class Window
         extends JPanel {
@@ -25,7 +27,11 @@ public class Window
     public static Timer DelayTimer = new Timer(1000, new TimerListener());
     public static boolean tryConnect = false;
     public static boolean scan = false;
+    public static boolean connect = false;
+    public static boolean communicate = false;
+    public static boolean krypto = false;
     public static boolean tryCom = false;
+    static Random Randgen = new Random();
 
     public Window() {
         initComponents();
@@ -100,9 +106,6 @@ public class Window
             case "scan":
                 scan();
                 break;
-            case "test":
-                printout("test");
-                break;
             case "connect":
                 connect();
                 break;
@@ -128,8 +131,25 @@ public class Window
 
     public static void scanStop() {
         DelayTimer.stop();
+        scan = false;
         printout("finished scanning");
     }
+    
+    public static void connectStop(){
+        DelayTimer.stop();
+        connect = false;
+    }
+    
+    public static void communicateStop(){
+        DelayTimer.stop();
+        communicate = false;
+    }
+    
+    public static void kryptoStop(){
+        DelayTimer.stop();
+        krypto = false;
+    }
+
 
     public static void printSameLine(String Text) {
         Output.append(Text);
@@ -146,7 +166,13 @@ public class Window
     public void scan() {
         this.scan = true;
         printout("scanning...");
+        TimerListener.i = 1;
+        if (Game.scanned)
+            DelayTimer.setDelay(0);
+        else
+            DelayTimer.setDelay(1000-(Randgen.nextInt(5)*100));
         DelayTimer.start();
+        Game.scanned = true;
     }
 
     public void connect() {
@@ -201,8 +227,9 @@ public class Window
                     Game.connected = true;
                     Game.connectTo = Game.SatField[i].ID;
                     printout(sat);
-                    printout("successfuly connected");
-                    printout(Game.SatField[i].response);
+                    connect = true;
+                    DelayTimer.setDelay(Randgen.nextInt(5)*100+200);
+                    DelayTimer.start();
                 }
                 else{
                     printout(sat);
@@ -233,8 +260,9 @@ public class Window
                         printout(sat);
                         Game.SatField[i].setCom(Game.connectTo);
                         Game.SatField[Game.connectTo].setCom(Game.SatField[i].ID);
-                        printout("now communicating with " + Game.SatField[i].Name +". Satellite says:");
-                        printout(Game.SatField[Game.SatField[Game.connectTo].Com].response);
+                        communicate = true;
+                        DelayTimer.setDelay(Randgen.nextInt(5)*100+200);
+                        DelayTimer.start();
                     }
                     else
                         printout("Satellite only sends: " + Game.undecryptedResponse);
@@ -263,7 +291,7 @@ class TimerListener implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
-
+        
         if (Window.scan) {
             Window.printout(Game.SatField[i].Name);
             if (i == Game.SatField.length - 1) {
@@ -271,6 +299,20 @@ class TimerListener implements ActionListener {
                 Window.scan = false;
                 Window.scanStop();
             }
+        }
+        else if(Window.connect){
+            Window.printout("successfuly connected");
+            Window.printout(Game.SatField[Game.connectTo].response);
+            Window.connectStop();
+        }
+        else if(Window.communicate){
+            Window.printout("now communicating with " + Game.SatField[Game.SatField[Game.connectTo].Com].Name);
+            Window.printout(Game.SatField[Game.SatField[Game.connectTo].Com].response);
+            Window.communicateStop();
+        }
+        else if(Window.krypto){
+            Window.printout("Disconnecting from KryptoSat");
+            Window.kryptoStop();
         }
         i += 1;
     }

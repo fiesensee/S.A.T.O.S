@@ -10,6 +10,7 @@ public class Game
   static boolean connected = false;
   static int connectTo = 0;
   static String undecryptedResponse = "000101010101111010101011101010111010100011101"; 
+  static boolean scanned = false;
   public Game()
   {
     JFrame Main = new JFrame("S.A.T.O.S");
