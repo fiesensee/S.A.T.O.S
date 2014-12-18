@@ -11,13 +11,13 @@ public class KryptoSat extends AbsSat{
     @Override
     void SatFunction() {
         //give right encryption key
-        Window.printout("generating and setting Encryption Key");
-        Game.DecryptKey = this.decryptionKey;
-        Window.krypto = true;
-        Window.DelayTimer.setDelay(Window.Randgen.nextInt(5)*100+200);
-        Window.DelayTimer.start();
-        Game.SatField[Game.SatField[Game.connectTo].Com].setCom(0);
-        Game.SatField[Game.connectTo].setCom(0);
+        Interpreter.printout("generating and setting Encryption Key");
+        Game.Player.DecryptKey = this.decryptionKey;
+        Interpreter.krypto = true;
+        Interpreter.DelayTimer.setDelay(Interpreter.Randgen.nextInt(5)*100+200);
+        Interpreter.DelayTimer.start();
+        Game.SatField[Game.SatField[Game.Player.connectTo].Com].setCom(0);
+        Game.SatField[Game.Player.connectTo].setCom(0);
     }
 
     @Override

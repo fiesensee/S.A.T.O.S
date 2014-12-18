@@ -13,8 +13,9 @@ public class ComSat extends AbsSat{
     @Override
     void SatFunction() {
         //establish communication
-        Window.printSameLine("communicating with:");
-        Window.tryCom = true;
+        Interpreter.printSameLine("communicating with:");
+        Interpreter.tryCom = true;
+        
     }
 
     @Override

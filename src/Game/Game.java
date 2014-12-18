@@ -5,25 +5,23 @@ import javax.swing.JFrame;
 public class Game
 {
   static AbsSat[] SatField;
-  static String ComProt = "Default";
-  static int DecryptKey = 0x10;
-  static boolean connected = false;
-  static int connectTo = 0;
   static String undecryptedResponse = "000101010101111010101011101010111010100011101"; 
   static boolean scanned = false;
+  static Ship Player = new Ship("The Balls Deep","Player"); 
   public Game()
   {
     JFrame Main = new JFrame("S.A.T.O.S");
-    Main.setSize(400, 510);
-    Window Game = new Window();
+    Main.setSize(405, 690);
+    GameWindow Game = new GameWindow();
     Main.add(Game);
     Main.setDefaultCloseOperation(3);
     Main.setVisible(true);
     StartGameLvl1();
   }
   
-  public static void StartGameLvl1()
+  public void StartGameLvl1()
   {
+
     SatField = new AbsSat[6];
     //0 is always null;
     SatField[0] =  null;
