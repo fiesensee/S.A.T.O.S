@@ -26,15 +26,15 @@
           <Group type="102" alignment="1" attributes="0">
               <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="jToggleButton7" alignment="1" min="-2" max="-2" attributes="0"/>
-                  <Component id="jToggleButton6" alignment="1" min="-2" max="-2" attributes="0"/>
+                  <Component id="NavButton" alignment="1" min="-2" max="-2" attributes="0"/>
+                  <Component id="ConButton" alignment="1" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
               <Component id="Title" min="-2" pref="260" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="jToggleButton8" min="-2" max="-2" attributes="0"/>
-                  <Component id="jToggleButton5" min="-2" max="-2" attributes="0"/>
+                  <Component id="SatButton" min="-2" max="-2" attributes="0"/>
+                  <Component id="SysButton" min="-2" max="-2" attributes="0"/>
               </Group>
           </Group>
       </Group>
@@ -49,21 +49,21 @@
                           <Group type="102" attributes="0">
                               <Group type="103" groupAlignment="3" attributes="0">
                                   <Component id="Title" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="jToggleButton5" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="jToggleButton6" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="SysButton" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="ConButton" alignment="3" min="-2" max="-2" attributes="0"/>
                               </Group>
                               <EmptySpace pref="35" max="32767" attributes="0"/>
                           </Group>
                           <Group type="102" alignment="1" attributes="0">
                               <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
-                              <Component id="jToggleButton8" min="-2" max="-2" attributes="0"/>
+                              <Component id="SatButton" min="-2" max="-2" attributes="0"/>
                               <EmptySpace min="-2" pref="38" max="-2" attributes="0"/>
                           </Group>
                       </Group>
                   </Group>
                   <Group type="102" alignment="1" attributes="0">
                       <EmptySpace max="32767" attributes="0"/>
-                      <Component id="jToggleButton7" min="-2" max="-2" attributes="0"/>
+                      <Component id="NavButton" min="-2" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="41" max="-2" attributes="0"/>
                   </Group>
               </Group>
@@ -118,6 +118,10 @@
             </Property>
             <Property name="lineWrap" type="boolean" value="true"/>
             <Property name="rows" type="int" value="5"/>
+            <Property name="text" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+              <Connection code="&quot;\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n&quot;" type="code"/>
+            </Property>
+            <Property name="toolTipText" type="java.lang.String" value=""/>
             <Property name="wrapStyleWord" type="boolean" value="true"/>
             <Property name="focusable" type="boolean" value="false"/>
           </Properties>
@@ -141,7 +145,7 @@
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="ActionPerformed"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JToggleButton" name="jToggleButton5">
+    <Component class="javax.swing.JToggleButton" name="SysButton">
       <Properties>
         <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
           <Color blue="0" green="0" red="0" type="rgb"/>
@@ -149,10 +153,14 @@
         <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
           <Color blue="66" green="66" red="66" type="rgb"/>
         </Property>
-        <Property name="text" type="java.lang.String" value="Sat"/>
+        <Property name="text" type="java.lang.String" value="Sys"/>
+        <Property name="focusPainted" type="boolean" value="false"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="SysButtonActionPerformed"/>
+      </Events>
     </Component>
-    <Component class="javax.swing.JToggleButton" name="jToggleButton6">
+    <Component class="javax.swing.JToggleButton" name="ConButton">
       <Properties>
         <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
           <Color blue="0" green="0" red="0" type="rgb"/>
@@ -160,10 +168,14 @@
         <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
           <Color blue="66" green="66" red="66" type="rgb"/>
         </Property>
-        <Property name="text" type="java.lang.String" value="Sat"/>
+        <Property name="text" type="java.lang.String" value="Con"/>
+        <Property name="focusPainted" type="boolean" value="false"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="ConButtonActionPerformed"/>
+      </Events>
     </Component>
-    <Component class="javax.swing.JToggleButton" name="jToggleButton7">
+    <Component class="javax.swing.JToggleButton" name="NavButton">
       <Properties>
         <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
           <Color blue="0" green="0" red="0" type="rgb"/>
@@ -171,10 +183,14 @@
         <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
           <Color blue="66" green="66" red="66" type="rgb"/>
         </Property>
-        <Property name="text" type="java.lang.String" value="Sat"/>
+        <Property name="text" type="java.lang.String" value="Nav"/>
+        <Property name="focusPainted" type="boolean" value="false"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="NavButtonActionPerformed"/>
+      </Events>
     </Component>
-    <Component class="javax.swing.JToggleButton" name="jToggleButton8">
+    <Component class="javax.swing.JToggleButton" name="SatButton">
       <Properties>
         <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
           <Color blue="0" green="0" red="0" type="rgb"/>
@@ -182,8 +198,13 @@
         <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
           <Color blue="66" green="66" red="66" type="rgb"/>
         </Property>
+        <Property name="selected" type="boolean" value="true"/>
         <Property name="text" type="java.lang.String" value="Sat"/>
+        <Property name="focusPainted" type="boolean" value="false"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="SatButtonActionPerformed"/>
+      </Events>
     </Component>
   </SubComponents>
 </Form>

@@ -23,31 +23,42 @@ public class Interpreter {
     public static boolean tryCom = false;
     static Random Randgen = new Random();
     public static void read (String Text){
-        
-        switch (Text) {
-            case "scan":
-                scan();
-                break;
-            case "connect":
-                connect();
-                break;
-            case "disconnect":
-                disconnect();
-                break;
-            case "status":
-                status();
-                break;
-            case "resetKey":
-                Game.Player.DecryptKey = 0x10;
-                break;
-            case "exit":
-                System.exit(0);
-                break;
-            case "run":
-                run();
-                break;
-            default:
-                printout("unknown command");
+        if (Game.GameState == 1){
+            switch (Text) {
+                case "scan":
+                    scan();
+                    break;
+                case "connect":
+                    connect();
+                    break;
+                case "disconnect":
+                    disconnect();
+                    break;
+                case "status":
+                    status();
+                    break;
+                case "resetKey":
+                    Game.Player.DecryptKey = 0x10;
+                    break;
+                case "exit":
+                    System.exit(0);
+                    break;
+                case "run":
+                    run();
+                    break;
+                default:
+                    printout("unknown command");
+            }
+        }
+        else if (Game.GameState == 2){
+            switch(Text){
+                
+                case "status":
+                    Game.Player.status();
+                    break;
+                default:
+                    printout("unknown command");
+            }
         }
     }
     public static void Con (String Text){

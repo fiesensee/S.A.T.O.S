@@ -33,10 +33,10 @@ public class GameWindow extends javax.swing.JPanel {
         jScrollPane2 = new javax.swing.JScrollPane();
         Output = new javax.swing.JTextArea();
         Input = new javax.swing.JTextField();
-        jToggleButton5 = new javax.swing.JToggleButton();
-        jToggleButton6 = new javax.swing.JToggleButton();
-        jToggleButton7 = new javax.swing.JToggleButton();
-        jToggleButton8 = new javax.swing.JToggleButton();
+        SysButton = new javax.swing.JToggleButton();
+        ConButton = new javax.swing.JToggleButton();
+        NavButton = new javax.swing.JToggleButton();
+        SatButton = new javax.swing.JToggleButton();
 
         setBackground(new java.awt.Color(0, 0, 0));
 
@@ -58,6 +58,8 @@ public class GameWindow extends javax.swing.JPanel {
         Output.setForeground(new java.awt.Color(51, 133, 19));
         Output.setLineWrap(true);
         Output.setRows(5);
+        Output.setText("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n");
+        Output.setToolTipText("");
         Output.setWrapStyleWord(true);
         Output.setFocusable(false);
         jScrollPane2.setViewportView(Output);
@@ -71,21 +73,46 @@ public class GameWindow extends javax.swing.JPanel {
             }
         });
 
-        jToggleButton5.setBackground(new java.awt.Color(0, 0, 0));
-        jToggleButton5.setForeground(new java.awt.Color(102, 102, 102));
-        jToggleButton5.setText("Sat");
+        SysButton.setBackground(new java.awt.Color(0, 0, 0));
+        SysButton.setForeground(new java.awt.Color(102, 102, 102));
+        SysButton.setText("Sys");
+        SysButton.setFocusPainted(false);
+        SysButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                SysButtonActionPerformed(evt);
+            }
+        });
 
-        jToggleButton6.setBackground(new java.awt.Color(0, 0, 0));
-        jToggleButton6.setForeground(new java.awt.Color(102, 102, 102));
-        jToggleButton6.setText("Sat");
+        ConButton.setBackground(new java.awt.Color(0, 0, 0));
+        ConButton.setForeground(new java.awt.Color(102, 102, 102));
+        ConButton.setText("Con");
+        ConButton.setFocusPainted(false);
+        ConButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ConButtonActionPerformed(evt);
+            }
+        });
 
-        jToggleButton7.setBackground(new java.awt.Color(0, 0, 0));
-        jToggleButton7.setForeground(new java.awt.Color(102, 102, 102));
-        jToggleButton7.setText("Sat");
+        NavButton.setBackground(new java.awt.Color(0, 0, 0));
+        NavButton.setForeground(new java.awt.Color(102, 102, 102));
+        NavButton.setText("Nav");
+        NavButton.setFocusPainted(false);
+        NavButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                NavButtonActionPerformed(evt);
+            }
+        });
 
-        jToggleButton8.setBackground(new java.awt.Color(0, 0, 0));
-        jToggleButton8.setForeground(new java.awt.Color(102, 102, 102));
-        jToggleButton8.setText("Sat");
+        SatButton.setBackground(new java.awt.Color(0, 0, 0));
+        SatButton.setForeground(new java.awt.Color(102, 102, 102));
+        SatButton.setSelected(true);
+        SatButton.setText("Sat");
+        SatButton.setFocusPainted(false);
+        SatButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                SatButtonActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -96,14 +123,14 @@ public class GameWindow extends javax.swing.JPanel {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jToggleButton7, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jToggleButton6, javax.swing.GroupLayout.Alignment.TRAILING))
+                    .addComponent(NavButton, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(ConButton, javax.swing.GroupLayout.Alignment.TRAILING))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(Title, javax.swing.GroupLayout.PREFERRED_SIZE, 260, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jToggleButton8)
-                    .addComponent(jToggleButton5)))
+                    .addComponent(SatButton)
+                    .addComponent(SysButton)))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -115,16 +142,16 @@ public class GameWindow extends javax.swing.JPanel {
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                     .addComponent(Title, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jToggleButton5)
-                                    .addComponent(jToggleButton6))
+                                    .addComponent(SysButton)
+                                    .addComponent(ConButton))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 35, Short.MAX_VALUE))
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                                 .addGap(0, 0, Short.MAX_VALUE)
-                                .addComponent(jToggleButton8)
+                                .addComponent(SatButton)
                                 .addGap(38, 38, 38))))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jToggleButton7)
+                        .addComponent(NavButton)
                         .addGap(41, 41, 41)))
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 467, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -141,6 +168,34 @@ public class GameWindow extends javax.swing.JPanel {
         else
             InputActionPerformed(evt);
     }//GEN-LAST:event_ActionPerformed
+
+    private void SatButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SatButtonActionPerformed
+        SysButton.setSelected(false);
+        NavButton.setSelected(false);
+        ConButton.setSelected(false);
+        Game.GameState = 1;
+    }//GEN-LAST:event_SatButtonActionPerformed
+
+    private void SysButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SysButtonActionPerformed
+        SatButton.setSelected(false);
+        NavButton.setSelected(false);
+        ConButton.setSelected(false);
+        Game.GameState = 2;
+    }//GEN-LAST:event_SysButtonActionPerformed
+
+    private void NavButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_NavButtonActionPerformed
+        SysButton.setSelected(false);
+        SatButton.setSelected(false);
+        ConButton.setSelected(false);
+        Game.GameState = 3;
+    }//GEN-LAST:event_NavButtonActionPerformed
+
+    private void ConButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ConButtonActionPerformed
+        SysButton.setSelected(false);
+        NavButton.setSelected(false);
+        SatButton.setSelected(false);
+        Game.GameState = 4;
+    }//GEN-LAST:event_ConButtonActionPerformed
     private void InputActionPerformed(ActionEvent evt){
         String Text = this.Input.getText();
         this.Input.setText("");
@@ -158,13 +213,13 @@ public class GameWindow extends javax.swing.JPanel {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JToggleButton ConButton;
     private javax.swing.JTextField Input;
+    private javax.swing.JToggleButton NavButton;
     public static javax.swing.JTextArea Output;
+    private javax.swing.JToggleButton SatButton;
+    private javax.swing.JToggleButton SysButton;
     private javax.swing.JLabel Title;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JToggleButton jToggleButton5;
-    private javax.swing.JToggleButton jToggleButton6;
-    private javax.swing.JToggleButton jToggleButton7;
-    private javax.swing.JToggleButton jToggleButton8;
     // End of variables declaration//GEN-END:variables
 }

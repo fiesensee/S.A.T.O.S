@@ -1,17 +1,19 @@
 package Game;
 
+import java.io.IOException;
 import javax.swing.JFrame;
 
-public class Game
+public final class Game
 {
+  static int GameState = 1;
   static AbsSat[] SatField;
   static String undecryptedResponse = "000101010101111010101011101010111010100011101"; 
   static boolean scanned = false;
-  static Ship Player = new Ship("The Balls Deep","Player"); 
-  public Game()
+  static Ship Player; 
+  public Game() throws IOException
   {
     JFrame Main = new JFrame("S.A.T.O.S");
-    Main.setSize(405, 690);
+    Main.setSize(410, 690);
     GameWindow Game = new GameWindow();
     Main.add(Game);
     Main.setDefaultCloseOperation(3);
@@ -19,9 +21,9 @@ public class Game
     StartGameLvl1();
   }
   
-  public void StartGameLvl1()
+  public void StartGameLvl1() throws IOException
   {
-
+    Player = new Ship("The Balls Deep","Player");
     SatField = new AbsSat[6];
     //0 is always null;
     SatField[0] =  null;
