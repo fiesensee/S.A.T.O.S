@@ -34,7 +34,7 @@ public class habitationmodule extends Module {
         } else {
                 throw new FileNotFoundException("property file '" + propFileName + "' not found in the classpath");
         }
-        String[] properties = (prop.getProperty("2").split(":"));
+        String[] properties = (prop.getProperty(""+ID).split(":"));
         this.Name = properties[0];
         this.area = Integer.parseInt(properties[1]);
         this.capacity = Integer.parseInt(properties[2]);

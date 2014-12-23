@@ -33,7 +33,7 @@ public class loadingbay extends Module {
         } else {
                 throw new FileNotFoundException("property file '" + propFileName + "' not found in the classpath");
         }
-        String[] properties = (prop.getProperty("2").split(":"));
+        String[] properties = (prop.getProperty(""+ID).split(":"));
         this.Name = properties[0];
         this.capacity = Integer.parseInt(properties[1]);
         this.mass = Integer.parseInt(properties[2]);
@@ -42,8 +42,8 @@ public class loadingbay extends Module {
     @Override
     public void moduleDisplay() {
         Interpreter.printout(this.Name);
-        Interpreter.printout("Max Capacity: "+this.Name+"t");
-        Interpreter.printout("Mass: "+this.Name+"t");
+        Interpreter.printout("Max Capacity: "+this.capacity+"t");
+        Interpreter.printout("Mass: "+this.mass+"t");
     }
     
 }

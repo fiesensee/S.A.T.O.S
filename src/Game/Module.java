@@ -15,6 +15,7 @@ public abstract class Module {
     String Name;
     int ID;
     int mass;
+    Double condition = 100.00;
     public abstract void setStats(int ID, String propFileName)throws IOException;
     public abstract void moduleDisplay();
 }

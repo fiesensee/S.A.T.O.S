@@ -14,10 +14,10 @@ import java.util.Properties;
  *
  * @author Felix
  */
-public class FuelTank extends Module{
-    double capacity;
-    String propFileName = "fueltank.properties";
-    public FuelTank(int ID) throws IOException{
+public class commandobridge extends Module {
+    int area;
+    String propFileName = "commandobridge.properties";
+    public commandobridge(int ID) throws IOException{
         this.ID = ID;
         this.setStats(ID, propFileName);
     }
@@ -35,14 +35,14 @@ public class FuelTank extends Module{
         }
         String[] properties = (prop.getProperty(""+ID).split(":"));
         this.Name = properties[0];
-        this.capacity = Double.parseDouble(properties[1]);
+        this.area = Integer.parseInt(properties[1]);
         this.mass = Integer.parseInt(properties[2]);
     }
 
     @Override
     public void moduleDisplay() {
         Interpreter.printout(this.Name);
-        Interpreter.printout("Max Capacity: "+this.capacity+"l");
+        Interpreter.printout("Operation Space: "+this.area+"m²");
         Interpreter.printout("Mass: "+this.mass+"t");
     }
     

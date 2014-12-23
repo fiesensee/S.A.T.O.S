@@ -36,7 +36,7 @@ public class engine extends Module {
         } else {
                 throw new FileNotFoundException("property file '" + propFileName + "' not found in the classpath");
         }
-        String[] properties = (prop.getProperty("2").split(":"));
+        String[] properties = (prop.getProperty(""+ID).split(":"));
         
         this.Name = properties[0];
         this.specificimpulse = Integer.parseInt(properties[1]);

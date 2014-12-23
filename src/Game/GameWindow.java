@@ -105,7 +105,6 @@ public class GameWindow extends javax.swing.JPanel {
 
         SatButton.setBackground(new java.awt.Color(0, 0, 0));
         SatButton.setForeground(new java.awt.Color(102, 102, 102));
-        SatButton.setSelected(true);
         SatButton.setText("Sat");
         SatButton.setFocusPainted(false);
         SatButton.addActionListener(new java.awt.event.ActionListener() {
@@ -165,36 +164,106 @@ public class GameWindow extends javax.swing.JPanel {
             ConnectActionPerformed(evt);
         else if (Interpreter.tryCom)
              ComActionPerformed(evt);
+        else if(Interpreter.usrboot){
+            usrbootAction(evt);
+        }
+        else if(Interpreter.pwdboot){
+            pwdbootAction(evt);
+        }
         else
             InputActionPerformed(evt);
     }//GEN-LAST:event_ActionPerformed
 
     private void SatButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SatButtonActionPerformed
-        SysButton.setSelected(false);
-        NavButton.setSelected(false);
-        ConButton.setSelected(false);
+    if(Game.GameState!=0){
+        if (SysButton.getModel().isSelected()){
+            Interpreter.sysText = Output.getText();
+            Output.setText(Interpreter.satText);
+            SysButton.setSelected(false);
+        }
+        else if (NavButton.getModel().isSelected()){
+            Interpreter.navText = Output.getText();
+            Output.setText(Interpreter.satText);
+            NavButton.setSelected(false);
+        }
+        else{
+            Interpreter.conText = Output.getText();
+            Output.setText(Interpreter.satText);
+            ConButton.setSelected(false);
+        }
         Game.GameState = 1;
+    }  
+    else
+        SatButton.setSelected(false);
     }//GEN-LAST:event_SatButtonActionPerformed
 
     private void SysButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SysButtonActionPerformed
-        SatButton.setSelected(false);
-        NavButton.setSelected(false);
-        ConButton.setSelected(false);
+        if(Game.GameState!=0){
+        if (SatButton.getModel().isSelected()){
+            Interpreter.satText = Output.getText();
+            Output.setText(Interpreter.sysText);
+            SatButton.setSelected(false);
+        }
+        else if (NavButton.getModel().isSelected()){
+            Interpreter.navText = Output.getText();
+            Output.setText(Interpreter.sysText);
+            NavButton.setSelected(false);
+        }
+        else{
+            Interpreter.conText = Output.getText();
+            Output.setText(Interpreter.sysText);
+            ConButton.setSelected(false);
+        }
         Game.GameState = 2;
+        }
+        else
+        SysButton.setSelected(false);
     }//GEN-LAST:event_SysButtonActionPerformed
 
     private void NavButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_NavButtonActionPerformed
-        SysButton.setSelected(false);
-        SatButton.setSelected(false);
-        ConButton.setSelected(false);
+        if(Game.GameState!=0){
+        if (SysButton.getModel().isSelected()){
+            Interpreter.sysText = Output.getText();
+            Output.setText(Interpreter.navText);
+            SysButton.setSelected(false);
+        }
+        else if (SatButton.getModel().isSelected()){
+            Interpreter.satText = Output.getText();
+            Output.setText(Interpreter.navText);
+            SatButton.setSelected(false);
+        }
+        else{
+            Interpreter.conText = Output.getText();
+            Output.setText(Interpreter.navText);
+            ConButton.setSelected(false);
+        }
         Game.GameState = 3;
+        }
+        else
+        NavButton.setSelected(false);
     }//GEN-LAST:event_NavButtonActionPerformed
 
     private void ConButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ConButtonActionPerformed
-        SysButton.setSelected(false);
-        NavButton.setSelected(false);
-        SatButton.setSelected(false);
+        if(Game.GameState!=0){
+        if (SysButton.getModel().isSelected()){
+            Interpreter.sysText = Output.getText();
+            Output.setText(Interpreter.conText);
+            SysButton.setSelected(false);
+        }
+        else if (NavButton.getModel().isSelected()){
+            Interpreter.navText = Output.getText();
+            Output.setText(Interpreter.conText);
+            NavButton.setSelected(false);
+        }
+        else{
+            Interpreter.satText = Output.getText();
+            Output.setText(Interpreter.conText);
+            SatButton.setSelected(false);
+        }
         Game.GameState = 4;
+        }
+        else
+        ConButton.setSelected(false);
     }//GEN-LAST:event_ConButtonActionPerformed
     private void InputActionPerformed(ActionEvent evt){
         String Text = this.Input.getText();
@@ -210,6 +279,16 @@ public class GameWindow extends javax.swing.JPanel {
         String Text = this.Input.getText();
         this.Input.setText("");
         Interpreter.Com(Text);
+    }
+    private void usrbootAction(ActionEvent evt){
+        String Text = this.Input.getText();
+        this.Input.setText("");
+        Interpreter.userboot(Text);    
+    }
+    private void pwdbootAction(ActionEvent evt){
+        String Text = this.Input.getText();
+        this.Input.setText("");
+        Interpreter.passboot(Text);    
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

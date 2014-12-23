@@ -14,14 +14,38 @@ import javax.swing.Timer;
  */
 
 public class Interpreter {
-    public static Timer DelayTimer = new Timer(1000, new TimerListener());
-    public static boolean tryConnect = false;
-    public static boolean scan = false;
-    public static boolean connect = false;
-    public static boolean communicate = false;
-    public static boolean krypto = false;
-    public static boolean tryCom = false;
+    static Timer DelayTimer = new Timer(1000, new TimerListener());
+    static boolean usrboot = false;
+    static boolean pwdboot = false;
+    static boolean tryConnect = false;
+    static boolean scan = false;
+    static boolean connect = false;
+    static boolean communicate = false;
+    static boolean krypto = false;
+    static boolean tryCom = false;
+    static boolean modulescan = false;
+    
     static Random Randgen = new Random();
+    static int bootstate = 0;
+    final static String boot = "This is a boot sequence";
+    final static String endboot = "End of boosequence";
+    final static String defaultout = "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n";
+    static String satText=defaultout;
+    static String conText=defaultout;
+    static String sysText=defaultout;
+    static String navText=defaultout;
+    
+    public static void boot(){
+        printout(boot);
+        Interpreter.usrboot = true;
+        DelayTimer.start();
+    }
+    public static void endboot(){
+        printout(endboot);
+        Game.GameState = 1;
+        
+    }
+    
     public static void read (String Text){
         if (Game.GameState == 1){
             switch (Text) {
@@ -56,8 +80,29 @@ public class Interpreter {
                 case "status":
                     Game.Player.status();
                     break;
+                case "exit":
+                    System.exit(0);
+                    break;
                 default:
                     printout("unknown command");
+            }
+        }
+        else if (Game.GameState == 3){
+            switch (Text){
+                case "exit":
+                    System.exit(0);
+                    break;
+                default:
+                printout("unknown command");
+            }
+        }
+        else{
+            switch (Text){
+                case "exit":
+                    System.exit(0);
+                    break;
+                default:
+                printout("unknown command");
             }
         }
     }
@@ -120,6 +165,39 @@ public class Interpreter {
         
         tryCom = false;
     }
+    public static void userboot(String Text){
+        printout(Text);
+        if (Text.equals(Game.user)){
+            printout("User found in system user database");
+            bootstate = 1;
+            usrboot = false;
+            pwdboot = true;
+            DelayTimer.start();
+        }
+        else{
+            printout("User not found in system user database");
+            DelayTimer.start();
+        }
+    }
+    public static void passboot(String Text){
+        String hidden = "";
+        int i = 0;
+        while(i < Text.length()){
+            hidden = hidden + "*";
+            i++;
+        }
+        printout(hidden);
+        if(Text.equals(Game.password)){
+            printout("password correct");
+            pwdboot = false;
+            bootstate = 0;
+            endboot();
+        }
+        else{
+            printout("password incorret");
+            DelayTimer.start();
+        }
+    }
     public static void printout(String Text) {
         GameWindow.Output.append(Text);
         GameWindow.Output.append("\n");
@@ -180,6 +258,14 @@ public class Interpreter {
             printout("not connected to any satellite");
         }
     }
+    public static void usrbootstop(){
+        DelayTimer.stop();
+
+    }
+    public static void pwdbootstop(){
+        DelayTimer.stop();
+
+    }
     public static void scanStop() {
         DelayTimer.stop();
         scan = false;
@@ -200,5 +286,9 @@ public class Interpreter {
         DelayTimer.stop();
         krypto = false;
     }
+    public static void statusStop(){
+        DelayTimer.stop();
+        modulescan = false;
     }
+}
 

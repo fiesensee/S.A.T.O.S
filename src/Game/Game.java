@@ -2,14 +2,19 @@ package Game;
 
 import java.io.IOException;
 import javax.swing.JFrame;
+import javax.swing.Timer;
 
 public final class Game
 {
-  static int GameState = 1;
+  //1=Sat,2=Sys,3=Nav,4=Con
+  static int GameState = 0;
   static AbsSat[] SatField;
   static String undecryptedResponse = "000101010101111010101011101010111010100011101"; 
   static boolean scanned = false;
   static Ship Player; 
+  static Timer conditiontimer = new Timer(10000, new conditiontimerListener());
+  static String user = "Admin";
+  static String password = "Admin";
   public Game() throws IOException
   {
     JFrame Main = new JFrame("S.A.T.O.S");
@@ -21,8 +26,9 @@ public final class Game
     StartGameLvl1();
   }
   
-  public void StartGameLvl1() throws IOException
-  {
+  public void StartGameLvl1() throws IOException{
+    Interpreter.boot();
+    conditiontimer.start();
     Player = new Ship("The Balls Deep","Player");
     SatField = new AbsSat[6];
     //0 is always null;
@@ -40,6 +46,7 @@ public final class Game
     SatField[4].response = "Open-Source Grey Decryption";
     SatField[5].response = "Don't steal my secrets";
   }
+
 
 }
 
